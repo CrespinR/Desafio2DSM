@@ -1,3 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Desafio2DSM</string>
+
+    <!-- Aplicación -->
+    <string name="app_name">AgenciaViajes</string>
+
+    <!-- Login -->
+    <string name="titulo_login">Agencia de Viajes</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="registrarse">Registrarse</string>
+
+    <!-- Registro -->
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="confirmar_contrasena">Confirmar contraseña</string>
+    <string name="volver_login">Volver al login</string>
+
+    <!-- Catálogo -->
+    <string name="destinos_turisticos">Destinos turísticos</string>
+    <string name="salir">Salir</string>
+    <string name="agregar_destino">Agregar destino</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+
+    <!-- Crear destino -->
+    <string name="nuevo_destino">Nuevo destino</string>
+    <string name="nombre_destino">Nombre del destino</string>
+    <string name="seleccionar_pais">Seleccionar país</string>
+    <string name="precio">Precio</string>
+    <string name="descripcion">Descripción</string>
+    <string name="seleccionar_imagen">Seleccionar imagen</string>
+    <string name="guardar_destino">Guardar destino</string>
+
+    <!-- Editar destino -->
+    <string name="editar_destino">Editar destino</string>
+    <string name="imagen_actual">Imagen actual</string>
+    <string name="cambiar_imagen">Cambiar imagen</string>
+    <string name="actualizar_destino">Actualizar destino</string>
+
+    <!-- Mensajes -->
+    <string name="ingrese_correo">Ingrese su correo</string>
+    <string name="ingrese_contrasena">Ingrese su contraseña</string>
+    <string name="ingrese_nombre">Ingrese el nombre</string>
+    <string name="ingrese_precio">Ingrese el precio</string>
+    <string name="precio_mayor_cero">El precio debe ser mayor que 0</string>
+    <string name="descripcion_minima">La descripción debe tener mínimo 20 caracteres</string>
+    <string name="seleccione_pais">Seleccione un país</string>
+    <string name="seleccione_imagen">Debe seleccionar una imagen</string>
+
+    <string name="login_exitoso">Inicio de sesión exitoso</string>
+    <string name="usuario_registrado">Usuario registrado correctamente</string>
+    <string name="destino_guardado">Destino guardado correctamente</string>
+    <string name="destino_actualizado">Destino actualizado correctamente</string>
+    <string name="destino_eliminado">Destino eliminado</string>
+
+    <string name="error_login">Correo o contraseña incorrectos</string>
+    <string name="error_registro">Error al registrar usuario</string>
+    <string name="error_cargar_destinos">Error al cargar destinos</string>
+    <string name="error_guardar_destino">Error al guardar destino</string>
+    <string name="error_actualizar_destino">Error al actualizar destino</string>
+    <string name="error_eliminar_destino">No se pudo eliminar</string>
+    <string name="error_subir_imagen">Error al subir imagen</string>
+
+    <!-- Confirmaciones -->
+    <string name="eliminar_destino">Eliminar destino</string>
+    <string name="confirmar_eliminar">¿Está seguro de eliminar este destino?</string>
+    <string name="cancelar">Cancelar</string>
+
+    <!-- Países -->
+    <string name="pais_seleccion">Seleccionar país</string>
+    <string name="el_salvador">El Salvador</string>
+    <string name="guatemala">Guatemala</string>
+    <string name="honduras">Honduras</string>
+    <string name="mexico">México</string>
+    <string name="costa_rica">Costa Rica</string>
+    <string name="panama">Panamá</string>
+    <string name="colombia">Colombia</string>
+    <string name="espana">España</string>
+    <string name="estados_unidos">Estados Unidos</string>
+
 </resources>
