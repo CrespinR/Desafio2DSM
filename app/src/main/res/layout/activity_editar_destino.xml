@@ -1,10 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarDestinoActivity">
+    android:background="@color/purple_light">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editar_destino"
+            android:textSize="@dimen/text_xlarge"
+            android:textStyle="bold"
+            android:textColor="@color/purple_dark"
+            android:layout_marginBottom="@dimen/margin_large" />
+
+        <EditText
+            android:id="@+id/etNombreEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_destino"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
+
+        <Spinner
+            android:id="@+id/spPaisEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <EditText
+            android:id="@+id/etPrecioEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/precio"
+            android:inputType="numberDecimal"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <EditText
+            android:id="@+id/etDescripcionEditar"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="@string/descripcion"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <ImageView
+            android:id="@+id/imgVistaPreviaEditar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/imagen_destino_height"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/imagen_actual" />
+
+        <Button
+            android:id="@+id/btnCambiarImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cambiar_imagen"
+            android:textColor="@color/text_icons"
+            android:backgroundTint="@color/accent"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/actualizar_destino"
+            android:textColor="@color/text_icons"
+            android:backgroundTint="@color/purple_primary"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+    </LinearLayout>
+
+</ScrollView>

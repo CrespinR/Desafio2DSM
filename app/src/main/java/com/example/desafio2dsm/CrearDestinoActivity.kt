@@ -34,8 +34,7 @@ class CrearDestinoActivity : AppCompatActivity() {
         etPrecio = findViewById(R.id.etPrecio)
         etDescripcion = findViewById(R.id.etDescripcion)
         imgVistaPrevia = findViewById(R.id.imgVistaPrevia)
-        btnSeleccionarImagen =
-            findViewById(R.id.btnSeleccionarImagen)
+        btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen)
         btnGuardar = findViewById(R.id.btnGuardar)
 
         configurarSpinner()

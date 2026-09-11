@@ -1,96 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_small"
-    android:backgroundTint="@color/text_icons">
+    android:layout_height="match_parent"
+    android:background="@color/purple_light">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nuevo_destino"
+            android:textSize="@dimen/text_xlarge"
+            android:textStyle="bold"
+            android:textColor="@color/purple_dark"
+            android:layout_marginBottom="@dimen/margin_large" />
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_destino"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text" />
+
+        <Spinner
+            android:id="@+id/spPais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <EditText
+            android:id="@+id/etPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/precio"
+            android:inputType="numberDecimal"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="@string/descripcion"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:layout_marginTop="@dimen/margin_medium" />
 
         <ImageView
-            android:id="@+id/imgDestino"
+            android:id="@+id/imgVistaPrevia"
             android:layout_width="match_parent"
             android:layout_height="@dimen/imagen_destino_height"
+            android:layout_marginTop="@dimen/margin_medium"
             android:scaleType="centerCrop"
             android:contentDescription="@string/imagen_actual" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/btnSeleccionarImagen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_medium">
+            android:text="@string/seleccionar_imagen"
+            android:textColor="@color/text_icons"
+            android:backgroundTint="@color/accent"
+            android:layout_marginTop="@dimen/margin_medium" />
 
-            <TextView
-                android:id="@+id/tvNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                android:textColor="@color/purple_dark" />
-
-            <TextView
-                android:id="@+id/tvPais"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:textColor="@color/secondary_text" />
-
-            <TextView
-                android:id="@+id/tvPrecio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_medium"
-                android:textStyle="bold"
-                android:textColor="@color/purple_primary"
-                android:layout_marginTop="@dimen/margin_small" />
-
-            <TextView
-                android:id="@+id/tvDescripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text"
-                android:layout_marginTop="@dimen/margin_small" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider"
-                android:layout_marginTop="@dimen/margin_medium" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin_small">
-
-                <Button
-                    android:id="@+id/btnEditar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/editar"
-                    android:textColor="@color/text_icons"
-                    android:backgroundTint="@color/accent" />
-
-                <Button
-                    android:id="@+id/btnEliminar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/eliminar"
-                    android:textColor="@color/text_icons"
-                    android:backgroundTint="@color/purple_dark"
-                    android:layout_marginStart="@dimen/margin_small" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar_destino"
+            android:textColor="@color/text_icons"
+            android:backgroundTint="@color/purple_primary"
+            android:layout_marginTop="@dimen/margin_medium" />
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</ScrollView>

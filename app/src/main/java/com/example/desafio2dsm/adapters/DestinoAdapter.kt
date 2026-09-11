@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.desafio2dsm.R
 import com.example.desafio2dsm.models.Destino
+import android.content.Intent
+import com.example.desafio2dsm.EditarDestinoActivity
 
 class DestinoAdapter(
     private val listaDestinos: MutableList<Destino>,
@@ -76,7 +78,18 @@ class DestinoAdapter(
             .into(holder.imgDestino)
 
         holder.btnEditar.setOnClickListener {
-            onEditar(destino)
+
+            val intent = Intent(
+                holder.itemView.context,
+                EditarDestinoActivity::class.java
+            )
+
+            intent.putExtra(
+                "destinoId",
+                destino.id
+            )
+
+            holder.itemView.context.startActivity(intent)
         }
 
         holder.btnEliminar.setOnClickListener {
