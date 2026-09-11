@@ -27,8 +27,7 @@ class RegistroActivity : AppCompatActivity() {
 
         etCorreo = findViewById(R.id.etCorreoRegistro)
         etContrasena = findViewById(R.id.etContrasenaRegistro)
-        etConfirmarContrasena =
-            findViewById(R.id.etConfirmarContrasena)
+        etConfirmarContrasena = findViewById(R.id.etConfirmarContrasena)
 
         btnRegistrar = findViewById(R.id.btnRegistrar)
         btnVolverLogin = findViewById(R.id.btnVolverLogin)

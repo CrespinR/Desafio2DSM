@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                         Destino::class.java
                     )
 
+                    // Asignar el ID del documento de Firestore
                     destino.id = documento.id
 
                     listaDestinos.add(destino)
