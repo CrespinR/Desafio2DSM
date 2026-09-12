@@ -36,16 +36,11 @@ android {
 
 dependencies {
 
-    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:34.18.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-storage")
 
-    // Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // AndroidX
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
