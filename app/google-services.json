@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "331421034675",
+    "project_id": "viajes-27bb2",
+    "storage_bucket": "viajes-27bb2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331421034675:android:f3b19a19217051d34ee8c6",
+        "android_client_info": {
+          "package_name": "com.example.desafio2dsm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3RmC1hGaw5NfJCn6I8Fpq7o3ui8W2ud4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
