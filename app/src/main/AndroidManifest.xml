@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/Viajes"
+        android:icon="@mipmap/viajes"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/Viajes"
+        android:roundIcon="@mipmap/viajes"
         android:supportsRtl="true"
         android:theme="@style/Theme.Desafio2DSM">
         <activity
