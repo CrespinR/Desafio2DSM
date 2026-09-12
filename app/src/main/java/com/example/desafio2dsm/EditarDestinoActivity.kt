@@ -1,21 +1,9 @@
 package com.example.desafio2dsm
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.Toast
-
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 class EditarDestinoActivity : AppCompatActivity() {
 
@@ -24,53 +12,60 @@ class EditarDestinoActivity : AppCompatActivity() {
     private lateinit var etPrecio: EditText
     private lateinit var etDescripcion: EditText
     private lateinit var imgVistaPrevia: ImageView
-    private lateinit var btnCambiarImagen: Button
-    private lateinit var btnActualizar: Button
+    private lateinit var btnGuardar: Button
 
-    private val db = FirebaseFirestore.getInstance()
-    private val storage = FirebaseStorage.getInstance()
+    private val db =
+        FirebaseFirestore.getInstance()
 
-    private var destinoId: String = ""
-    private var imagenUrlActual: String = ""
-    private var imagenSeleccionada: Uri? = null
-
-    private val REQUEST_IMAGE = 100
-
-    private val paises = arrayOf(
-        "Seleccionar país",
-        "El Salvador",
-        "Guatemala",
-        "Honduras",
-        "México",
-        "Costa Rica",
-        "Panamá",
-        "Colombia",
-        "España",
-        "Estados Unidos"
-    )
+    private var destinoId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_editar_destino)
 
-        inicializarComponentes()
+        setContentView(
+            R.layout.activity_editar_destino
+        )
+
+        etNombre =
+            findViewById(R.id.etNombre)
+
+        spPais =
+            findViewById(R.id.spPais)
+
+        etPrecio =
+            findViewById(R.id.etPrecio)
+
+        etDescripcion =
+            findViewById(R.id.etDescripcion)
+
+        imgVistaPrevia =
+            findViewById(R.id.imgVistaPrevia)
+
+        btnGuardar =
+            findViewById(R.id.btnGuardar)
+
         configurarSpinner()
-        obtenerDestino()
-        configurarBotones()
-    }
 
-    private fun inicializarComponentes() {
+        cargarDatos()
 
-        etNombre = findViewById(R.id.etNombreEditar)
-        spPais = findViewById(R.id.spPaisEditar)
-        etPrecio = findViewById(R.id.etPrecioEditar)
-        etDescripcion = findViewById(R.id.etDescripcionEditar)
-        imgVistaPrevia = findViewById(R.id.imgVistaPreviaEditar)
-        btnCambiarImagen = findViewById(R.id.btnCambiarImagen)
-        btnActualizar = findViewById(R.id.btnActualizar)
+        btnGuardar.setOnClickListener {
+            actualizarDestino()
+        }
     }
 
     private fun configurarSpinner() {
+
+        val paises = arrayOf(
+            "El Salvador",
+            "Guatemala",
+            "Honduras",
+            "México",
+            "Costa Rica",
+            "Panamá",
+            "Colombia",
+            "España",
+            "Estados Unidos"
+        )
 
         val adapter = ArrayAdapter(
             this,
@@ -85,139 +80,115 @@ class EditarDestinoActivity : AppCompatActivity() {
         spPais.adapter = adapter
     }
 
-    private fun obtenerDestino() {
+    private fun cargarDatos() {
 
-        destinoId = intent.getStringExtra("destinoId") ?: ""
+        destinoId =
+            intent.getStringExtra("id") ?: ""
 
-        if (destinoId.isEmpty()) {
+        val nombre =
+            intent.getStringExtra("nombre") ?: ""
 
-            Toast.makeText(
-                this,
-                "No se encontró el destino",
-                Toast.LENGTH_SHORT
-            ).show()
+        val pais =
+            intent.getStringExtra("pais") ?: ""
 
-            finish()
-            return
-        }
+        val precio =
+            intent.getDoubleExtra(
+                "precio",
+                0.0
+            )
 
-        db.collection("destinos")
-            .document(destinoId)
-            .get()
-            .addOnSuccessListener { document ->
+        val descripcion =
+            intent.getStringExtra(
+                "descripcion"
+            ) ?: ""
 
-                if (document.exists()) {
+        val imagen =
+            intent.getStringExtra(
+                "imagen"
+            ) ?: ""
 
-                    val nombre =
-                        document.getString("nombre") ?: ""
+        etNombre.setText(nombre)
 
-                    val pais =
-                        document.getString("pais") ?: ""
+        etPrecio.setText(
+            precio.toString()
+        )
 
-                    val precio =
-                        document.getDouble("precio")
+        etDescripcion.setText(
+            descripcion
+        )
 
-                    val descripcion =
-                        document.getString("descripcion") ?: ""
-
-                    imagenUrlActual =
-                        document.getString("imagenUrl") ?: ""
-
-                    etNombre.setText(nombre)
-
-                    if (precio != null) {
-                        etPrecio.setText(precio.toString())
-                    }
-
-                    etDescripcion.setText(descripcion)
-
-                    seleccionarPais(pais)
-
-                    if (imagenUrlActual.isNotEmpty()) {
-
-                        Glide.with(this)
-                            .load(imagenUrlActual)
-                            .placeholder(android.R.drawable.ic_menu_gallery)
-                            .error(android.R.drawable.ic_menu_report_image)
-                            .into(imgVistaPrevia)
-                    }
-
-                } else {
-
-                    Toast.makeText(
-                        this,
-                        "El destino no existe",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    finish()
-                }
-            }
-            .addOnFailureListener {
-
-                Toast.makeText(
-                    this,
-                    "Error al cargar el destino",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-    }
-
-    private fun seleccionarPais(pais: String) {
-
-        val posicion = paises.indexOf(pais)
+        val posicion =
+            (spPais.adapter as ArrayAdapter<String>)
+                .getPosition(pais)
 
         if (posicion >= 0) {
+
             spPais.setSelection(posicion)
         }
+
+        mostrarImagen(imagen)
     }
 
-    private fun configurarBotones() {
-
-        btnCambiarImagen.setOnClickListener {
-            seleccionarImagen()
-        }
-
-        btnActualizar.setOnClickListener {
-            actualizarDestino()
-        }
-    }
-
-    private fun seleccionarImagen() {
-
-        val intent = Intent(Intent.ACTION_PICK)
-
-        intent.type = "image/*"
-
-        startActivityForResult(
-            intent,
-            REQUEST_IMAGE
-        )
-    }
-
-    @Deprecated("Deprecated in Android API")
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
+    private fun mostrarImagen(
+        nombreImagen: String
     ) {
-        super.onActivityResult(
-            requestCode,
-            resultCode,
-            data
-        )
 
-        if (
-            requestCode == REQUEST_IMAGE &&
-            resultCode == Activity.RESULT_OK &&
-            data != null
-        ) {
-
-            imagenSeleccionada = data.data
-
-            imgVistaPrevia.setImageURI(
-                imagenSeleccionada
+        val resourceId =
+            resources.getIdentifier(
+                nombreImagen,
+                "drawable",
+                packageName
             )
+
+        if (resourceId != 0) {
+
+            imgVistaPrevia.setImageResource(
+                resourceId
+            )
+
+        } else {
+
+            imgVistaPrevia.setImageResource(
+                R.drawable.destino_default
+            )
+        }
+    }
+
+    private fun obtenerNombreImagen(
+        pais: String
+    ): String {
+
+        return when (pais) {
+
+            "El Salvador" ->
+                "destino_sv"
+
+            "Guatemala" ->
+                "destino_guatemala"
+
+            "Honduras" ->
+                "destino_honduras"
+
+            "México" ->
+                "destino_mexico"
+
+            "Costa Rica" ->
+                "destino_costa_rica"
+
+            "Panamá" ->
+                "destino_panama"
+
+            "Colombia" ->
+                "destino_colombia"
+
+            "España" ->
+                "destino_espana"
+
+            "Estados Unidos" ->
+                "destino_usa"
+
+            else ->
+                "destino_default"
         }
     }
 
@@ -235,36 +206,18 @@ class EditarDestinoActivity : AppCompatActivity() {
         val descripcion =
             etDescripcion.text.toString().trim()
 
-        // Validar nombre
         if (nombre.isEmpty()) {
 
             etNombre.error =
-                getString(R.string.ingrese_nombre)
-
-            etNombre.requestFocus()
+                "Ingrese el nombre"
 
             return
         }
 
-        // Validar país
-        if (pais == "Seleccionar país") {
-
-            Toast.makeText(
-                this,
-                getString(R.string.seleccione_pais),
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        // Validar precio
         if (precioTexto.isEmpty()) {
 
             etPrecio.error =
-                getString(R.string.ingrese_precio)
-
-            etPrecio.requestFocus()
+                "Ingrese el precio"
 
             return
         }
@@ -275,103 +228,28 @@ class EditarDestinoActivity : AppCompatActivity() {
         if (precio == null || precio <= 0) {
 
             etPrecio.error =
-                getString(R.string.precio_mayor_cero)
-
-            etPrecio.requestFocus()
+                "El precio debe ser mayor que 0"
 
             return
         }
 
-        // Validar descripción
         if (descripcion.length < 20) {
 
             etDescripcion.error =
-                getString(R.string.descripcion_minima)
-
-            etDescripcion.requestFocus()
+                "Mínimo 20 caracteres"
 
             return
         }
 
-        // Si el usuario seleccionó una nueva imagen
-        if (imagenSeleccionada != null) {
+        val imagen =
+            obtenerNombreImagen(pais)
 
-            subirNuevaImagen(
-                nombre,
-                pais,
-                precio,
-                descripcion
-            )
-
-        } else {
-
-            actualizarFirestore(
-                nombre,
-                pais,
-                precio,
-                descripcion,
-                imagenUrlActual
-            )
-        }
-    }
-
-    private fun subirNuevaImagen(
-        nombre: String,
-        pais: String,
-        precio: Double,
-        descripcion: String
-    ) {
-
-        val uri = imagenSeleccionada ?: return
-
-        btnActualizar.isEnabled = false
-
-        val referencia = storage
-            .reference
-            .child("destinos")
-            .child("$destinoId.jpg")
-
-        referencia.putFile(uri)
-            .addOnSuccessListener {
-
-                referencia.downloadUrl
-                    .addOnSuccessListener { nuevaUrl ->
-
-                        actualizarFirestore(
-                            nombre,
-                            pais,
-                            precio,
-                            descripcion,
-                            nuevaUrl.toString()
-                        )
-                    }
-            }
-            .addOnFailureListener {
-
-                btnActualizar.isEnabled = true
-
-                Toast.makeText(
-                    this,
-                    getString(R.string.error_subir_imagen),
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-    }
-
-    private fun actualizarFirestore(
-        nombre: String,
-        pais: String,
-        precio: Double,
-        descripcion: String,
-        imagenUrl: String
-    ) {
-
-        val datos = hashMapOf<String, Any>(
+        val datos = hashMapOf(
             "nombre" to nombre,
             "pais" to pais,
             "precio" to precio,
             "descripcion" to descripcion,
-            "imagenUrl" to imagenUrl
+            "imagen" to imagen
         )
 
         db.collection("destinos")
@@ -381,30 +259,17 @@ class EditarDestinoActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    getString(R.string.destino_actualizado),
+                    "Destino actualizado",
                     Toast.LENGTH_SHORT
                 ).show()
 
-                val intent = Intent(
-                    this,
-                    MainActivity::class.java
-                )
-
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                            Intent.FLAG_ACTIVITY_SINGLE_TOP
-
-                startActivity(intent)
-
                 finish()
             }
-            .addOnFailureListener {
-
-                btnActualizar.isEnabled = true
+            .addOnFailureListener { error ->
 
                 Toast.makeText(
                     this,
-                    getString(R.string.error_actualizar_destino),
+                    "Error al actualizar:\n${error.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }

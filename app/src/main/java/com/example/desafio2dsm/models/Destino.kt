@@ -6,5 +6,5 @@ data class Destino(
     var pais: String = "",
     var precio: Double = 0.0,
     var descripcion: String = "",
-    var imagenUrl: String = ""
+    var imagen: String = ""
 )

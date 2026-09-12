@@ -3,8 +3,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_light">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,41 +14,42 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/editar_destino"
+            android:text="Editar destino"
             android:textSize="@dimen/text_xlarge"
             android:textStyle="bold"
-            android:textColor="@color/purple_dark"
+            android:textColor="@color/primary_text"
+            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_large" />
 
         <EditText
-            android:id="@+id/etNombreEditar"
+            android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nombre_destino"
+            android:hint="Nombre del destino"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/secondary_text" />
 
         <Spinner
-            android:id="@+id/spPaisEditar"
+            android:id="@+id/spPais"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium" />
 
         <EditText
-            android:id="@+id/etPrecioEditar"
+            android:id="@+id/etPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/precio"
+            android:hint="Precio"
             android:inputType="numberDecimal"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/secondary_text"
             android:layout_marginTop="@dimen/margin_medium" />
 
         <EditText
-            android:id="@+id/etDescripcionEditar"
+            android:id="@+id/etDescripcion"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:hint="@string/descripcion"
+            android:hint="Descripción"
             android:gravity="top"
             android:inputType="textMultiLine"
             android:textColor="@color/primary_text"
@@ -57,30 +57,22 @@
             android:layout_marginTop="@dimen/margin_medium" />
 
         <ImageView
-            android:id="@+id/imgVistaPreviaEditar"
+            android:id="@+id/imgVistaPrevia"
             android:layout_width="match_parent"
             android:layout_height="@dimen/imagen_destino_height"
-            android:layout_marginTop="@dimen/margin_medium"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/imagen_actual" />
-
-        <Button
-            android:id="@+id/btnCambiarImagen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cambiar_imagen"
-            android:textColor="@color/text_icons"
-            android:backgroundTint="@color/accent"
+            android:src="@drawable/destino_default"
+            android:contentDescription="Imagen del destino"
             android:layout_marginTop="@dimen/margin_medium" />
 
         <Button
-            android:id="@+id/btnActualizar"
+            android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/actualizar_destino"
+            android:text="Guardar cambios"
             android:textColor="@color/text_icons"
-            android:backgroundTint="@color/purple_primary"
-            android:layout_marginTop="@dimen/margin_medium" />
+            android:backgroundTint="@color/purple_dark"
+            android:layout_marginTop="@dimen/margin_large" />
 
     </LinearLayout>
 

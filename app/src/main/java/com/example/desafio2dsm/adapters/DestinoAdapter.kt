@@ -7,20 +7,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.desafio2dsm.EditarDestinoActivity
 import com.example.desafio2dsm.R
 import com.example.desafio2dsm.models.Destino
 import android.content.Intent
-import com.example.desafio2dsm.EditarDestinoActivity
 
 class DestinoAdapter(
-    private val listaDestinos: MutableList<Destino>,
-    private val onEditar: (Destino) -> Unit,
+    private val listaDestinos: ArrayList<Destino>,
     private val onEliminar: (Destino) -> Unit
 ) : RecyclerView.Adapter<DestinoAdapter.DestinoViewHolder>() {
 
-    class DestinoViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class DestinoViewHolder(
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
 
         val imgDestino: ImageView =
             itemView.findViewById(R.id.imgDestino)
@@ -49,14 +48,14 @@ class DestinoAdapter(
         viewType: Int
     ): DestinoViewHolder {
 
-        val vista = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(
                 R.layout.item_destino,
                 parent,
                 false
             )
 
-        return DestinoViewHolder(vista)
+        return DestinoViewHolder(view)
     }
 
     override fun onBindViewHolder(
@@ -66,17 +65,43 @@ class DestinoAdapter(
 
         val destino = listaDestinos[position]
 
-        holder.tvNombre.text = destino.nombre
-        holder.tvPais.text = destino.pais
+        holder.tvNombre.text =
+            destino.nombre
+
+        holder.tvPais.text =
+            destino.pais
+
         holder.tvPrecio.text =
-            String.format("$%.2f", destino.precio)
-        holder.tvDescripcion.text = destino.descripcion
+            "$${String.format("%.2f", destino.precio)}"
 
-        Glide.with(holder.itemView.context)
-            .load(destino.imagenUrl)
-            .placeholder(android.R.drawable.ic_menu_gallery)
-            .into(holder.imgDestino)
+        holder.tvDescripcion.text =
+            destino.descripcion
 
+
+        val resourceId =
+            holder.itemView.context.resources
+                .getIdentifier(
+                    destino.imagen,
+                    "drawable",
+                    holder.itemView.context.packageName
+                )
+
+        if (resourceId != 0) {
+
+            holder.imgDestino.setImageResource(
+                resourceId
+            )
+
+        } else {
+
+            holder.imgDestino.setImageResource(
+                R.drawable.destino_default
+            )
+        }
+
+        /*
+         * Botón editar.
+         */
         holder.btnEditar.setOnClickListener {
 
             val intent = Intent(
@@ -85,19 +110,48 @@ class DestinoAdapter(
             )
 
             intent.putExtra(
-                "destinoId",
+                "id",
                 destino.id
             )
 
-            holder.itemView.context.startActivity(intent)
+            intent.putExtra(
+                "nombre",
+                destino.nombre
+            )
+
+            intent.putExtra(
+                "pais",
+                destino.pais
+            )
+
+            intent.putExtra(
+                "precio",
+                destino.precio
+            )
+
+            intent.putExtra(
+                "descripcion",
+                destino.descripcion
+            )
+
+            intent.putExtra(
+                "imagen",
+                destino.imagen
+            )
+
+            holder.itemView.context.startActivity(
+                intent
+            )
         }
 
         holder.btnEliminar.setOnClickListener {
+
             onEliminar(destino)
         }
     }
 
     override fun getItemCount(): Int {
+
         return listaDestinos.size
     }
 }

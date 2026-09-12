@@ -3,8 +3,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_light">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,19 +14,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nuevo_destino"
+            android:text="Crear destino"
             android:textSize="@dimen/text_xlarge"
             android:textStyle="bold"
-            android:textColor="@color/purple_dark"
+            android:textColor="@color/primary_text"
+            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_large" />
 
         <EditText
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nombre_destino"
+            android:hint="Nombre del destino"
             android:textColor="@color/primary_text"
-            android:textColorHint="@color/secondary_text" />
+            android:textColorHint="@color/secondary_text"
+            android:inputType="textCapSentences" />
 
         <Spinner
             android:id="@+id/spPais"
@@ -39,21 +40,21 @@
             android:id="@+id/etPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/precio"
-            android:inputType="numberDecimal"
+            android:hint="Precio"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/secondary_text"
+            android:inputType="numberDecimal"
             android:layout_marginTop="@dimen/margin_medium" />
 
         <EditText
             android:id="@+id/etDescripcion"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:hint="@string/descripcion"
-            android:gravity="top"
-            android:inputType="textMultiLine"
+            android:hint="Descripción"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/secondary_text"
+            android:gravity="top"
+            android:inputType="textCapSentences|textMultiLine"
             android:layout_marginTop="@dimen/margin_medium" />
 
         <ImageView
@@ -62,13 +63,14 @@
             android:layout_height="@dimen/imagen_destino_height"
             android:layout_marginTop="@dimen/margin_medium"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/imagen_actual" />
+            android:src="@drawable/destino_default"
+            android:contentDescription="Vista previa del destino" />
 
         <Button
             android:id="@+id/btnSeleccionarImagen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/seleccionar_imagen"
+            android:text="Ver imagen del destino"
             android:textColor="@color/text_icons"
             android:backgroundTint="@color/accent"
             android:layout_marginTop="@dimen/margin_medium" />
@@ -77,10 +79,10 @@
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/guardar_destino"
+            android:text="Guardar destino"
             android:textColor="@color/text_icons"
-            android:backgroundTint="@color/purple_primary"
-            android:layout_marginTop="@dimen/margin_medium" />
+            android:backgroundTint="@color/purple_dark"
+            android:layout_marginTop="@dimen/margin_large" />
 
     </LinearLayout>
 

@@ -104,23 +104,22 @@ class MainActivity : AppCompatActivity() {
 
                 for (documento in resultado) {
 
-                    val destino = documento.toObject(
-                        Destino::class.java
-                    )
+                    val destino =
+                        documento.toObject(Destino::class.java)
 
-                    // Asignar el ID del documento de Firestore
-                    destino.id = documento.id
+                    destino.id =
+                        documento.id
 
                     listaDestinos.add(destino)
                 }
 
                 adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener {
+            .addOnFailureListener { error ->
 
                 Toast.makeText(
                     this,
-                    "Error al cargar destinos",
+                    "Error al cargar destinos:\n${error.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
