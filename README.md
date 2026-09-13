@@ -1,5 +1,9 @@
 Desafio2DSM
 
+link del video: https://drive.google.com/drive/folders/1WBLDfVOLTTFbhgZn2ige-pvAwDsF60xu?usp=drive_link
+
+la apk esta dentro del prooyecto
+
 Bryan Anderson Crespin Ramos  Carnet:CR241106
 
 Descripción del proyecto
